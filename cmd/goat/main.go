@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/blampe/goat/src"
+	"github.com/dmacvicar/goat"
 
 	"gopkg.in/alecthomas/kingpin.v2"
 )

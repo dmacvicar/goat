@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"io"
+	"github.com/llgcode/draw2d"
 )
 
 // Characters where more than one line segment can come together.
@@ -149,7 +150,7 @@ func NewCanvas(in io.Reader) Canvas {
 
 // Drawable represents anything that can Draw itself.
 type Drawable interface {
-	Draw(out io.Writer)
+	Draw(gc draw2d.GraphicContext)
 }
 
 // Line represents a straight segment between two points.
