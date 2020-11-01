@@ -7,8 +7,12 @@ generation.
 
 ```bash
 $ go get github.com/blampe/goat
-$ goat my-cool-diagram.txt > my-cool-diagram.svg
+$ cat my-cool-diagram.txt | goat >  my-cool-diagram.svg
 ```
+
+By default, the program reads from stdin, unless `-i infile` is given.
+By default, the program writes to stdout, unless `-o outfile` is given or a binary format with `-f` is selected.
+By default, it writes in [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) format, unless another format is specified with `-f`.
 
 ## TODO
 
