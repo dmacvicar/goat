@@ -63,8 +63,14 @@ func main() {
 		}
 	}
 
+	var err error
 	switch format {
 	case "svg":
-		goat.ASCIItoSVG(input, output)
+		err = goat.AsciiToSvg(input, output)
+	case "png":
+		err = goat.AsciiToPng(input, output)
+	}
+	if err != nil {
+		log.Fatal(err)
 	}
 }

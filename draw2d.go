@@ -8,9 +8,7 @@ import (
 	"github.com/llgcode/draw2d/draw2dkit"
 )
 
-// ASCIItoSVG reads in a newline-delimited ASCII diagram and writes a
-// corresponding SVG diagram.
-func RenderASCII(in io.Reader, gc draw2d.GraphicContext) {
+func RenderAscii(in io.Reader, gc draw2d.GraphicContext) {
 	canvas := NewCanvas(in)
 
 	// 		canvas.Height*16+8+1, (canvas.Width+1)*8,
