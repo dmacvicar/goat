@@ -6,11 +6,11 @@ import (
 	 "github.com/llgcode/draw2d/draw2dsvg"
 )
 
-func AsciiToSvg(in io.Reader, out io.Writer) error {
+func AsciiToSvg(canvas Canvas, out io.Writer) error {
 	svg := draw2dsvg.NewSvg()
 	svg.FontMode = draw2dsvg.SysFontMode
 	gc := draw2dsvg.NewGraphicContext(svg)
-	RenderAscii(in, gc)
+	RenderAscii(canvas, gc)
 	_, err := out.Write([]byte(xml.Header))
 	if err != nil {
 		return err

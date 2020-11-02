@@ -1,20 +1,14 @@
 package goat
 
 import (
-	"io"
 	"math"
 	"image/color"
 	"github.com/llgcode/draw2d"
 	"github.com/llgcode/draw2d/draw2dkit"
 )
 
-func RenderAscii(in io.Reader, gc draw2d.GraphicContext) {
-	canvas := NewCanvas(in)
-
-	// 		canvas.Height*16+8+1, (canvas.Width+1)*8,
-
+func RenderAscii(canvas Canvas, gc draw2d.GraphicContext) {
 	gc.Translate(8, 16);
-	//gc.MoveTo(8, 16)
 
 	for _, l := range canvas.Lines() {
 		l.Draw(gc)

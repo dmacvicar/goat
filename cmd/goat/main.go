@@ -64,11 +64,12 @@ func main() {
 	}
 
 	var err error
+	canvas := goat.NewCanvas(input)
 	switch format {
 	case "svg":
-		err = goat.AsciiToSvg(input, output)
+		err = goat.AsciiToSvg(canvas, output)
 	case "png":
-		err = goat.AsciiToPng(input, output)
+		err = goat.AsciiToPng(canvas, output)
 	}
 	if err != nil {
 		log.Fatal(err)
