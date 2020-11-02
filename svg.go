@@ -1,9 +1,9 @@
 package goat
 
 import (
-	"io"
 	"encoding/xml"
-	 "github.com/llgcode/draw2d/draw2dsvg"
+	"github.com/llgcode/draw2d/draw2dsvg"
+	"io"
 )
 
 func AsciiToSvg(canvas Canvas, out io.Writer) error {

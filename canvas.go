@@ -3,8 +3,8 @@ package goat
 import (
 	"bufio"
 	"bytes"
-	"io"
 	"github.com/llgcode/draw2d"
+	"io"
 )
 
 // Characters where more than one line segment can come together.

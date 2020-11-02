@@ -1,14 +1,14 @@
 package goat
 
 import (
-	"math"
-	"image/color"
 	"github.com/llgcode/draw2d"
 	"github.com/llgcode/draw2d/draw2dkit"
+	"image/color"
+	"math"
 )
 
 func RenderAscii(canvas Canvas, gc draw2d.GraphicContext) {
-	gc.Translate(8, 16);
+	gc.Translate(8, 16)
 
 	for _, l := range canvas.Lines() {
 		l.Draw(gc)
@@ -217,17 +217,17 @@ func (t Triangle) Draw(gc draw2d.GraphicContext) {
 		}
 	}
 
-	rad := r*math.Pi/180
+	rad := r * math.Pi / 180
 	// rotate the triangle around the center point
 	// Translating to x,y, rotating and translating back
-	x0r := float64((x0 - x)*math.Cos(rad) - (y0 - y)*math.Sin(rad)) + x
-	y0r := float64((x0 - x)*math.Sin(rad) + (y0 - y)*math.Cos(rad)) + y
+	x0r := float64((x0-x)*math.Cos(rad)-(y0-y)*math.Sin(rad)) + x
+	y0r := float64((x0-x)*math.Sin(rad)+(y0-y)*math.Cos(rad)) + y
 
-	x1r := float64((x1 - x)*math.Cos(rad) - (y1 - y)*math.Sin(rad)) + x
-	y1r := float64((x1 - x)*math.Sin(rad) + (y1 - y)*math.Cos(rad)) + y
+	x1r := float64((x1-x)*math.Cos(rad)-(y1-y)*math.Sin(rad)) + x
+	y1r := float64((x1-x)*math.Sin(rad)+(y1-y)*math.Cos(rad)) + y
 
-	x2r := float64((x2 - x)*math.Cos(rad) - (y2 - y)*math.Sin(rad)) + x
-	y2r := float64((x2 - x)*math.Sin(rad) + (y2 - y)*math.Cos(rad)) + y
+	x2r := float64((x2-x)*math.Cos(rad)-(y2-y)*math.Sin(rad)) + x
+	y2r := float64((x2-x)*math.Sin(rad)+(y2-y)*math.Cos(rad)) + y
 
 	gc.MoveTo(x0r, y0r)
 	gc.LineTo(x1r, y1r)
@@ -282,7 +282,7 @@ func (t Text) Draw(gc draw2d.GraphicContext) {
 	}
 
 	if opacity != 0 {
-		draw2dkit.Rectangle(gc, float64(p.x-4), float64(p.y-8), float64(p.x-4 + 8), float64(p.y-8 + 16))
+		draw2dkit.Rectangle(gc, float64(p.x-4), float64(p.y-8), float64(p.x-4+8), float64(p.y-8+16))
 		gc.FillStroke()
 		return
 	}
@@ -308,13 +308,13 @@ func dotProduct(ux, uy, vx, vy float64) float64 {
 }
 
 func magnitude(ux, uy float64) float64 {
-	return math.Sqrt(math.Pow(ux,2) + math.Pow(uy,2))
+	return math.Sqrt(math.Pow(ux, 2) + math.Pow(uy, 2))
 }
 
 // https://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
 // (F.6.5.4)
 func angleBetween(ux, uy, vx, vy float64) float64 {
-	angle := math.Acos(dotProduct(ux, uy, vx, vy)/(magnitude(ux, uy)*magnitude(vx, vy)))
+	angle := math.Acos(dotProduct(ux, uy, vx, vy) / (magnitude(ux, uy) * magnitude(vx, vy)))
 	if (ux*vy - uy*vx) < 0 {
 		return -angle
 	}
@@ -330,33 +330,33 @@ func svgArcTo(gc draw2d.GraphicContext, startX, startY, endX, endY, rx, ry float
 	// Xp means X'
 	// https://www.w3.org/TR/SVG11/implnote.html#ArcImplementationNotes
 	// (F.6.5.1) simplified because of rotation angle always 0
-	startXp := float64(startX - endX)/2.0
-	startYp := float64(startY - endY)/2.0
+	startXp := float64(startX-endX) / 2.0
+	startYp := float64(startY-endY) / 2.0
 
 	// (F.6.5.2)
 	factorTerm := math.Sqrt(
-		(math.Pow(rx, 2)*math.Pow(ry, 2) - math.Pow(rx, 2)*math.Pow(startYp, 2) - math.Pow(ry, 2)*math.Pow(startXp, 2)) / (math.Pow(rx, 2)*math.Pow(startYp, 2) + math.Pow(ry, 2)*math.Pow(startXp, 2)) )
+		(math.Pow(rx, 2)*math.Pow(ry, 2) - math.Pow(rx, 2)*math.Pow(startYp, 2) - math.Pow(ry, 2)*math.Pow(startXp, 2)) / (math.Pow(rx, 2)*math.Pow(startYp, 2) + math.Pow(ry, 2)*math.Pow(startXp, 2)))
 	// largeArc flag is always 0 in this case
 	if sweepFlag == 0 {
 		factorTerm = -factorTerm
 	}
 
 	// (F.6.5.2)
-	cxp := factorTerm*(rx*startYp)/ry
-	cyp := -factorTerm*(ry*startXp)/rx
+	cxp := factorTerm * (rx * startYp) / ry
+	cyp := -factorTerm * (ry * startXp) / rx
 
 	// (F.6.5.3)
 	// rotation angle is again zero, makes equation simpler
-	cx := cxp + float64(startX + endX)/2.0
-	cy := cyp + float64(startY + endY)/2.0
+	cx := cxp + float64(startX+endX)/2.0
+	cy := cyp + float64(startY+endY)/2.0
 
 	// (F.6.5.5)
-	theta1 := angleBetween(1, 0, (startXp - cxp)/rx, (startYp-cyp)/ry)
+	theta1 := angleBetween(1, 0, (startXp-cxp)/rx, (startYp-cyp)/ry)
 	// (F.6.5.6)
 	deltaTheta := math.Mod(angleBetween((startXp-cxp)/rx, (startYp-cyp)/ry, (-startXp-cxp)/rx, (-startYp-cyp)/ry), 2*math.Pi)
-	if (sweepFlag == 0 && (deltaTheta > 0)) {
+	if sweepFlag == 0 && (deltaTheta > 0) {
 		deltaTheta = deltaTheta - 2*math.Pi
-	} else if (sweepFlag == 1 && (deltaTheta < 0)) {
+	} else if sweepFlag == 1 && (deltaTheta < 0) {
 		deltaTheta = deltaTheta + 2*math.Pi
 	}
 
@@ -413,4 +413,3 @@ func (b Bridge) Draw(gc draw2d.GraphicContext) {
 
 	svgArcTo(gc, float64(x), float64(y-8), float64(x), float64(y+8), float64(9), float64(9), sweepFlag)
 }
-
