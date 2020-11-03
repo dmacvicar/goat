@@ -287,16 +287,6 @@ func (t Text) Draw(gc draw2d.GraphicContext) {
 		return
 	}
 
-	// Escape for XML
-	switch c {
-	case "&":
-		c = "&amp;"
-	case ">":
-		c = "&gt;"
-	case "<":
-		c = "&lt;"
-	}
-
 	gc.SetFontData(draw2d.FontData{Name: "Menlo,Lucida Console,monospace", Family: draw2d.FontFamilyMono, Style: draw2d.FontStyleBold | draw2d.FontStyleItalic})
 	gc.SetFillColor(color.Black)
 	gc.SetFontSize(14)
