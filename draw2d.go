@@ -289,7 +289,7 @@ func (t Text) Draw(gc draw2d.GraphicContext) {
 
 	gc.SetFontData(draw2d.FontData{Name: "Liberation Mono,monospace", Family: draw2d.FontFamilyMono})
 	gc.SetFillColor(color.Black)
-	gc.SetFontSize(14)
+	gc.SetFontSize(13)
 	gc.FillStringAt(c, float64(p.x), float64(p.y+4))
 }
 
