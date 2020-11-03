@@ -287,7 +287,7 @@ func (t Text) Draw(gc draw2d.GraphicContext) {
 		return
 	}
 
-	gc.SetFontData(draw2d.FontData{Name: "Menlo,Lucida Console,monospace", Family: draw2d.FontFamilyMono, Style: draw2d.FontStyleBold | draw2d.FontStyleItalic})
+	gc.SetFontData(draw2d.FontData{Name: "Liberation Mono,monospace", Family: draw2d.FontFamilyMono})
 	gc.SetFillColor(color.Black)
 	gc.SetFontSize(14)
 	gc.FillStringAt(c, float64(p.x), float64(p.y+4))

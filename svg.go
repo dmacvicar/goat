@@ -24,6 +24,7 @@ func (gc *FixDraw2DEscapeXml) FillStringAt(text string, x, y float64) (width flo
 }
 
 func AsciiToSvg(canvas Canvas, out io.Writer) error {
+	initFontCache()
 	svg := draw2dsvg.NewSvg()
 	svg.FontMode = draw2dsvg.SysFontMode
 	var gc draw2d.GraphicContext
